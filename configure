@@ -1,0 +1,105 @@
+#!/bin/sh
+
+get_fullname() {
+	dir="retrosmart-xcursor"
+
+	case "$*" in
+	(w*) dir="${dir}-white" ;;
+	(b*) dir="${dir}-black" ;;
+	esac
+	case "$*" in (*c*) dir="${dir}-color" ;; esac
+	case "$*" in (*s*) dir="${dir}-shadow" ;; esac
+	echo "$dir"
+}
+
+gen() {
+	cursor="$1"
+	color="$2"
+	dir="$(get_fullname "$color")"
+	frames=""
+	shift 2
+	for frame
+	do
+		frames="$frames src/$cursor$frame.$color.32.png"
+		frames="$frames src/$cursor$frame.$color.36.png"
+	done
+
+	cat <<EOF
+src/$cursor.$color.cur: $frames
+$dir: $dir/cursors/$cursor
+$dir/cursors/$cursor: $dir/cursors src/$cursor.$color.cur
+	cp src/$cursor.$color.cur \$@
+
+EOF
+}
+
+link() {
+	src="$1"
+	shift
+
+	for dst
+	do for dir in retrosmart-xcursor-{white,black}{,-color}{,-shadow}
+	do cat <<EOF
+$dir: $dir/cursors/$dst
+$dir/cursors/$dst: $dir/cursors/$src
+	ln -s $src \$@
+EOF
+	done done
+}
+
+exec >config.mk
+
+for cursor in \
+	all-scroll ll_angle bottom_left_corner lr_angle \
+	bottom_right_corner bottom_side bottom_tee cell center_ptr \
+	closedhand col-resize color-picker context-menu crosshair \
+	default dnd-ask dnd-copy dnd-link dnd-move dnd-no-drop \
+	down-arrow draft fleur help left-arrow left_side left_tee \
+	not-allowed openhand pencil pirate pointer right-arrow right_ptr \
+	right_side right_tee row-resize size_bdiag size_fdiag size_hor \
+	size_ver text ul_angle top_left_corner ur_angle top_right_corner \
+	top_side top_tee up-arrow vertical-text wayland-cursor x-cursor \
+	zoom-in zoom-out
+do for color in w wc ws wcs b bc bs bcs
+do gen "$cursor" "$color" ""
+done done
+
+for color in w wc ws wcs b bc bs bcs
+do gen progress "$color" {1,2,3,4}
+done
+
+for color in w wc ws wcs b bc bs bcs
+do gen wait "$color" {0,1}{1,2,3,4,5,6,7,8,9} 10 20
+done
+
+link	bottom_left_corner	sw-resize
+link	bottom_right_corner	se-resize
+link	bottom_side		s-resize
+link	col-resize		split_h
+link	crosshair		cross
+link	default		        arrow left_ptr top_left_arrow
+link	dnd-copy		copy
+link	dnd-link		alias link
+link	dnd-move		move
+link	dnd-no-drop		no-drop
+link	down-arrow		{,sb_}down_arow
+link	fleur			size_all
+link	help			left_ptr_help whats_this question_arrow
+link	left-arrow		{,sb_}left_arow
+link	left_side		w-resize
+link	not-allowed		circle crossed_circle forbidden
+link	cell			plus
+link	pointer			pointing_hand hand1 hand2
+link	progress		half-busy left_ptr_watch
+link	right-arrow		{,sb_}right_arow
+link	right_side		e-resize
+link	row-resize		split_v
+link	size_hor		{,sb_}h_double_arrow
+link	size_ver		{,sb_}v_double_arrow
+link	text			xterm ibeam
+link	top_left_corner		nw-resize
+link	top_right_corner	ne-resize
+link	top_side		n-resize
+link	up-arrow		{,sb_}up_arow
+link	x-cursor		X_cursor
+link	wait		        watch
