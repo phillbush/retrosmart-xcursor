@@ -1,6 +1,8 @@
 #                          retrosmart-xcursor
-##         <https://github.com/phillbush/retrosmart-xcursor>
-##  Forked from <https://github.com/mdomlop/retrosmart-x11-cursors>
+
+<https://github.com/phillbush/retrosmart-xcursor>
+
+Forked from <https://github.com/mdomlop/retrosmart-x11-cursors>
 
 Retrosmart is an X11 cursor theme created [and expanded] for personal use.
 Inspired by old Windows 3.x and OS X cursors, Retrosmart brings an old
@@ -46,5 +48,5 @@ This fork's building process differs from the original as follows:
 * Distro-specific packaging makefiles have been removed.
 
 Authors
-* Manuel Domínguez López <mdomlop at google mail dot com>
-* Lucas de Sena <lucas at seninha dot org>
+* Manuel Domínguez López `<mdomlop at google mail dot com>`
+* Lucas de Sena `<lucas at seninha dot org>`
