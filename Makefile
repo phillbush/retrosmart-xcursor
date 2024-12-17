@@ -100,7 +100,7 @@ distclean:
 	rm -rf retrosmart-xcursor-{white,black}{,-color}{,-shadow}
 
 PREVIEW = default \
-	pointer dnd-ask dnd-move dnd-copy dnd-link dnd-no-drop not-allowed \
+	pointer dnd-ask dnd-copy dnd-no-drop not-allowed \
 	context-menu help progress1 wait01 text ll_angle bottom_left_corner \
 	pirate color-picker crosshair cell pencil zoom-in zoom-out
 PREVIEW_FILES = \
@@ -109,7 +109,7 @@ PREVIEW_FILES = \
 	${PREVIEW:%=src/%.wcs.32.png} ${PREVIEW:%=src/%.wcs.36.png} \
 	${PREVIEW:%=src/%.bcs.32.png} ${PREVIEW:%=src/%.bcs.36.png}
 demo.png: ${PREVIEW_FILES}
-	montage -geometry +9+8 -tile 22x0 ${PREVIEW_FILES} $@
+	montage -geometry +8+8 -tile 20x0 ${PREVIEW_FILES} $@
 
 
 include config.mk

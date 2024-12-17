@@ -13,8 +13,11 @@ appendices and alpha shading.
 
 This fork differs from the original as follows:
 * New cursors for drag-and-drop operations (ask, copy, link, move, no-drop).
-* All DND cursors are based on the closedhand cursors, ones originally based
-  on the regular arrow are linked to the closed hand ones.
+* All drag-and-drop cursors are based on the closedhand cursor,
+  the dnd cursors originally based on the regular arrow are linked to
+  the closedhand-based ones.
+* The closedhand cursors and cursors based on it have white and black
+  versions (they were originally white only).
 * New {ul,ur,ll,lr}_angle cursors.
 * New {top,bottom,left,right}_tee cursors.
 
@@ -23,7 +26,7 @@ This fork differs from the original as follows:
 To build, generate a `./config.mk` file by running the `./configure`
 script.  Then run `make retrosmart-xcursor-white-color-shadow` to build
 the white-colored-shadowed theme; or `make all` to build all themes.
-`Imagemagick(1)` and `xcursorgen(1)` are needed to build.
+`Imagemagick(1)` and `xcursorgen(1)` are needed for building
 
 	./configure
 	make all        # or "make retrosmart-xcursor-black" etc
@@ -47,6 +50,6 @@ This fork's building process differs from the original as follows:
   rather shadow already converted unshadowed PNGs.
 * Distro-specific packaging makefiles have been removed.
 
-Authors
+Authors:
 * Manuel Domínguez López `<mdomlop at google mail dot com>`
 * Lucas de Sena `<lucas at seninha dot org>`
