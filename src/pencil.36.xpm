@@ -5,7 +5,7 @@ static char *dummy[]={
 "a c black",
 "d c green",
 "b c red",
-"c c yellow1",
+"c c yellow",
 "# c white",
 "..................###...............",
 ".................#aaa#..............",

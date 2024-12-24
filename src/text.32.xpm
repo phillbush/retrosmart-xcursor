@@ -3,8 +3,8 @@ static char *_2_text[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 3 1 ",
 "  c None",
-". c black",
-"X c white",
+". c coral",
+"X c cyan",
 /* pixels */
 " XX   XX                        ",
 "X..X X..X                       ",

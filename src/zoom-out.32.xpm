@@ -4,7 +4,7 @@ static char *_2_zoom_out[] = {
 "32 32 4 1 ",
 "  c None",
 ". c black",
-"X c red1",
+"X c red",
 "o c white",
 /* pixels */
 "      oooo                      ",

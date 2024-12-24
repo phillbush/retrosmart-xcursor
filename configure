@@ -6,8 +6,8 @@ get_fullname() {
 	case "$*" in
 	(w*) dir="${dir}-white" ;;
 	(b*) dir="${dir}-black" ;;
+	(r*) dir="${dir}-red" ;;
 	esac
-	case "$*" in (*c*) dir="${dir}-color" ;; esac
 	case "$*" in (*s*) dir="${dir}-shadow" ;; esac
 	echo "$dir"
 }
@@ -38,7 +38,7 @@ link() {
 	shift
 
 	for dst
-	do for dir in retrosmart-xcursor-{white,black}{,-color}{,-shadow}
+	do for dir in retrosmart-xcursor-{white,black,red}{,-shadow}
 	do cat <<EOF
 $dir: $dir/cursors/$dst
 $dir/cursors/$dst: $dir/cursors/$src
@@ -60,16 +60,14 @@ for cursor in \
 	size_ver text ul_angle top_left_corner ur_angle top_right_corner \
 	top_side top_tee up-arrow vertical-text wayland-cursor x-cursor \
 	zoom-in zoom-out
-do for color in w wc ws wcs b bc bs bcs
+do for color in {w,b,r}{,s}
 do gen "$cursor" "$color" ""
 done done
 
-for color in w wc ws wcs b bc bs bcs
-do gen progress "$color" {1,2,3,4}
-done
-
-for color in w wc ws wcs b bc bs bcs
-do gen wait "$color" {0,1}{1,2,3,4,5,6,7,8,9} 10 20
+for color in {w,b,r}{,s}
+do
+	gen progress "$color" {1,2,3,4}
+	gen wait "$color" {0,1}{1,2,3,4,5,6,7,8,9} 10 20
 done
 
 link	bottom_left_corner	sw-resize

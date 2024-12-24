@@ -6,7 +6,7 @@ static char *_2_pencil[] = {
 ". c black",
 "X c red",
 "o c green",
-"O c yellow1",
+"O c yellow",
 "+ c white",
 /* pixels */
 "               +++              ",
