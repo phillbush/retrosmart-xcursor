@@ -52,7 +52,7 @@ retrosmart-xcursor-red-shadow/index.theme: retrosmart-xcursor-red-shadow
 	(*/crosshair.r*.png|*/text.r*.png) \
 		sed "s/cyan/white/;s/coral/red/;" ;; \
 	(*.r*.png) \
-		sed "s/cyan/red/;s/coral/black/;" ;; \
+		sed "s/cyan/red/;s/coral/white/;" ;; \
 	esac <$< | convert xpm:- png:$@; \
 
 # shadow cursor (depends on non-shadowed form)
@@ -75,16 +75,15 @@ distclean:
 	rm -rf retrosmart-xcursor-{white,black,red}{,-shadow}
 
 PREVIEW = default \
-	pointer dnd-ask dnd-copy dnd-no-drop not-allowed \
+	pointer dnd-link dnd-no-drop not-allowed \
 	context-menu help progress1 wait01 text ll_angle bottom_left_corner \
-	pirate color-picker crosshair cell pencil zoom-in zoom-out
+	pirate color-picker crosshair pencil zoom-in zoom-out
 PREVIEW_FILES = \
-	${PREVIEW:%=src/%.w.32.png}  ${PREVIEW:%=src/%.w.36.png} \
-	${PREVIEW:%=src/%.b.32.png}  ${PREVIEW:%=src/%.b.36.png} \
 	${PREVIEW:%=src/%.ws.32.png} ${PREVIEW:%=src/%.ws.36.png} \
-	${PREVIEW:%=src/%.bs.32.png} ${PREVIEW:%=src/%.bs.36.png}
+	${PREVIEW:%=src/%.bs.32.png} ${PREVIEW:%=src/%.bs.36.png} \
+	${PREVIEW:%=src/%.rs.32.png} ${PREVIEW:%=src/%.rs.36.png}
 demo.png: ${PREVIEW_FILES}
-	montage -geometry +8+8 -tile 20x0 ${PREVIEW_FILES} $@
+	montage -geometry +8+8 -tile 18x0 ${PREVIEW_FILES} $@
 
 config.mk: configure
 	./configure
